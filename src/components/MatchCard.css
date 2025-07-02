@@ -1,0 +1,99 @@
+/* New styles for the revamped MatchCard */
+.match-card-new {
+  display: block; /* To make the Link behave like a block */
+  background-color: #1f2937; /* bg-gray-800 */
+  border-radius: 0.5rem; /* rounded-lg */
+  padding: 1rem;
+  color: #d1d5db; /* text-gray-300 */
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid #374151; /* border-gray-700 */
+}
+
+.match-card-new:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(163, 230, 53, 0.15); /* shadow-lime-400/15 */
+  border-color: #4b5563; /* border-gray-600 */
+}
+
+.match-card-new.error {
+  text-align: center;
+  padding: 2rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem; /* text-xs */
+  color: #9ca3af; /* text-gray-400 */
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #374151; /* border-gray-700 */
+}
+
+.league-info {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 0.5rem;
+}
+
+.status-badge {
+  padding: 0.25rem 0.625rem; /* px-2.5 py-1 */
+  border-radius: 9999px; /* rounded-full */
+  font-weight: 600; /* font-semibold */
+  font-size: 0.75rem; /* text-xs */
+  flex-shrink: 0;
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.team-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 35%;
+}
+
+.team-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.team-name {
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+  color: #e5e7eb; /* text-gray-200 */
+}
+
+.score-info {
+  display: flex;
+  align-items: center;
+  font-weight: 700; /* font-bold */
+  font-size: 1.875rem; /* text-3xl */
+  color: #a3e635; /* text-lime-400 */
+}
+
+.score-separator {
+  margin: 0 0.75rem;
+  color: #4b5563; /* text-gray-600 */
+}
+
+.card-footer {
+  font-size: 0.75rem; /* text-xs */
+  color: #6b7280; /* text-gray-500 */
+  text-align: center;
+  padding-top: 0.75rem;
+  border-top: 1px solid #374151; /* border-gray-700 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

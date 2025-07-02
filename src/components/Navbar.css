@@ -1,0 +1,330 @@
+.navbar {
+  background: linear-gradient(90deg, rgb(38, 37, 37) 0%, rgb(26, 23, 23) 100%); /* Slightly darker */
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  color: #fff;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  z-index: 1;
+  width: 100%;
+  max-width: 1500px;
+  padding: 0 24px; /* Adds some padding on the sides */
+  align-items: center; /* Vertically align items */
+}
+
+.navbar-logo {
+  color: #fff;
+  justify-self: start;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu {
+  /* Mobile menu is hidden by default on larger screens (desktop-first for this rule) */
+  display: none;
+  list-style: none;
+  /* Other properties like position, top, left, width, height, background, etc.,
+     will be defined in the media query for mobile view. */
+  /* text-align: center; */ /* This might be needed inside the media query if items are block */
+  /* margin-right: -22px; */ /* This might have been for the old flex row layout */
+}
+
+/* Styles for when the mobile menu is active (visible) */
+/* These are mostly applied within the media query context */
+
+.nav-item {
+  height: 80px;
+}
+
+.nav-links {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  height: 100%;
+  transition: all 0.2s ease-out; /* Moved transition here */
+}
+
+.nav-links:hover {
+  border-bottom: 4px solid #fff;
+  color: #f0f0f0; /* Lighter hover color */
+}
+
+.menu-icon {
+  display: none; /* Will be handled by media queries for mobile */
+  color: #fff; /* Ensure icon is visible */
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.menu-icons-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between search and menu icon */
+}
+
+.search-icon {
+  color: #fff;
+  font-size: 1.5rem; /* Adjust size as needed */
+  cursor: pointer;
+  display: flex; /* For alignment if needed */
+  align-items: center; /* For alignment if needed */
+}
+
+.search-icon:hover {
+  color: #ccc;
+}
+
+.search-bar-container {
+  position: absolute;
+  top: 70px; /* Position below navbar */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 400px; /* Max width for the search bar */
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 0 0 8px 8px; /* Rounded bottom corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 998; /* Below navbar but above other content */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.search-bar-container.active {
+  opacity: 1;
+  visibility: visible;
+  top: 80px; /* Ensure it's just below the navbar */
+}
+
+.search-form {
+  display: flex;
+  width: 100%;
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: #007bff; /* Example focus color */
+}
+
+.search-button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #007bff; /* Example button color */
+  color: white;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+
+.menu-icons-right {
+  display: flex;
+  align-items: center;
+}
+
+.icon-container {
+  margin-left: 1rem; /* Adjust spacing as needed */
+  color: #fff; /* Or your desired icon color */
+  cursor: pointer;
+}
+
+.user-profile-container {
+  position: relative; /* For dropdown positioning */
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 100%; /* Position below the icon */
+  right: 0;
+  background-color: #2d3748; /* Dark background, adjust as needed */
+  border: 1px solid #4a5568; /* Border color */
+  border-radius: 0.375rem; /* Rounded corners */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 50; /* Ensure it's above other content */
+  min-width: 160px; /* Minimum width */
+  padding: 0.5rem 0;
+}
+
+.dropdown-header {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  color: #e2e8f0; /* Lighter text color */
+  border-bottom: 1px solid #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  color: #cbd5e0; /* Text color for items */
+  font-size: 0.875rem; /* Smaller font size */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #4a5568; /* Hover background color */
+  color: #fff;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+}
+.logout-button .mr-2 {
+  margin-right: 0.5rem;
+}
+
+/* Adjust betslip link styling if needed */
+.betslip-icon-link {
+  text-decoration: none;
+  color: #fff; /* Or your desired link color */
+  font-size: 1.5rem; /* Adjusted for consistency with other icons if needed */
+  padding: 0.25rem 0.5rem; /* Adjust padding as needed */
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease-in-out;
+  display: flex; /* To align icon and text if you add text */
+  align-items: center;
+}
+
+.login-icon-link {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Space between icon and text */
+  font-size: 1rem; /* Match other icons */
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease-in-out;
+}
+.login-icon-link:hover {
+  background-color: #4a5568; /* Example hover */
+}
+
+.betslip-icon-link:hover {
+  background-color: #4a5568; /* Example hover */
+}
+
+
+.login-text-desktop {
+  font-size: 0.875rem; /* Smaller text for "Login" next to icon */
+}
+
+/* Ensure mobile menu items are styled appropriately */
+.nav-menu.active .nav-item .nav-links,
+.nav-menu.active .nav-item .betslip-icon-link { /* If you add betslip to mobile menu */
+  /* ... your existing mobile link styles ... */
+  padding: 1rem;
+  width: 100%;
+  display: table;
+}
+
+.nav-menu.active .nav-item .betslip-icon-link:hover {
+  background-color: #1e88e5; /* Example hover for mobile */
+  color: #fff;
+  border-radius: 0;
+}
+
+
+
+
+
+
+@media screen and (max-width: 960px) {
+  .nav-menu {
+    /* Show and style for mobile view */
+    /* display: flex; is already here from previous attempts, ensure it's what you want for column layout */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 80px); /* Full height minus navbar */
+    position: absolute;
+    top: 80px; /* Position below navbar */
+    left: -100%; /* Start off-screen */
+    opacity: 1;
+    transition: all 0.5s ease;
+    background: #1c1c1c; /* Dark background for mobile menu, ensure this is desired */
+  }
+
+  .menu-icon {
+    display: block; /* Show menu icon */
+  }
+
+  .nav-menu.active {
+    left: 0; /* Slide in */
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+
+  .nav-links {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    display: table;
+  }
+
+  .nav-links:hover {
+    background-color: #fff;
+    color: #242424;
+    border-radius: 0;
+    border-bottom: none; /* Remove bottom border on mobile hover */
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .search-icon {
+    /* Keep search icon visible on mobile if desired, or hide it */
+    /* display: none; */ /* Uncomment to hide search on mobile if menu icon is primary */
+  }
+
+  .search-bar-container {
+    width: 90%; /* Adjust width for mobile */
+    top: 70px; /* Adjust if needed */
+  }
+  .search-bar-container.active {
+    top: 80px;
+  }
+
+  .login-text-desktop {
+    display: none; /* Hide "Login" text on mobile if only icon is desired */
+  }
+
+
+}

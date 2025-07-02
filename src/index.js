@@ -1,13 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import { BetSlipProvider } from './context/BetSlipContext'; // Import BetSlipProvider
+import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <AuthProvider> {/* AuthProvider should wrap BetSlipProvider if BetSlip needs auth info */}
+        <BetSlipProvider>
+          <App />
+        </BetSlipProvider>
+      </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

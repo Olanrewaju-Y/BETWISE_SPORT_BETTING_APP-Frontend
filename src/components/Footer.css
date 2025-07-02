@@ -1,0 +1,51 @@
+/* Footer.css */
+.footer {
+    background-color: #0a0a0a; /* Very dark background for consistency */
+    color: #cbd5e0; /* Light gray text */
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid #2d3748; /* Dark border */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-links {
+    margin-bottom: 20px;
+}
+
+.footer-link {
+    color: #a3e635; /* Lemon green */
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #bef264; /* Lighter lemon green on hover */
+}
+
+.footer-social-media {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    color: #cbd5e0; /* Light gray for icons */
+    margin: 0 15px;
+    font-size: 1.5rem; /* Adjust size as needed */
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #a3e635; /* Lemon green on hover */
+}
+
+.footer-copyright p {
+    font-size: 0.875rem; /* 14px */
+}

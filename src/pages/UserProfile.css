@@ -1,0 +1,57 @@
+.user-profile-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  min-height: calc(100vh - 120px); /* Adjust based on your navbar/footer height */
+  background-color: #f4f7f6; /* Light background for the page */
+}
+
+.profile-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+}
+
+.profile-container h1 {
+  text-align: center;
+  color: #2c3e50; /* Darker heading color */
+  margin-bottom: 25px;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 15px;
+}
+
+.profile-details {
+  margin-top: 20px;
+}
+
+.profile-detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 16px;
+}
+
+.profile-detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-weight: bold;
+  color: #555;
+  margin-right: 15px;
+}
+
+.detail-value {
+  color: #333;
+  text-align: right;
+  word-break: break-all; /* Prevents long strings from breaking layout */
+}

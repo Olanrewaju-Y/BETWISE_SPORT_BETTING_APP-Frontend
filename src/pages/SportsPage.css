@@ -1,0 +1,23 @@
+.sports-page-container {
+    background-color: #000;
+    color: #fff;
+}
+
+.team-grid {
+    display: grid;
+    /* Adjust minmax for better card fitting */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* This class is used in TeamCard to truncate long descriptions */
+.team-card .description-truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 64px; /* Ensure a minimum height for consistency */
+}
