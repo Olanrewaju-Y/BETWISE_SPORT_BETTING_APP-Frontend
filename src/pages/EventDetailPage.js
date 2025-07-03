@@ -6,9 +6,11 @@ import { useAuth } from '../context/AuthContext'; // Import useAuth
 import { useBetSlip } from '../context/BetSlipContext'; // Import useBetSlip
 
 
-const API_BASE_URL = 'https://betwise-sport-betting-app.onrender.com/api/user/all-events';
-const API_PLACE_ODD_URL = 'https://betwise-sport-betting-app.onrender.com/api/user/place-odd/';
- 
+const API_GET_EVENT_BY_ID = process.env.REACT_APP_API_GET_EVENT_BY_ID;
+const API_PLACE_ODD_URL = process.env.REACT_APP_API_PLACE_ODD_URL;
+const API_GET_PLACED_ODDS_URL = process.env.REACT_APP_API_GET_ALL_PLACED_ODDS_URL;
+               
+
 // Helper function to format date strings
 const formatDate = (dateString) => {
     if (!dateString) return 'N/A';
@@ -52,7 +54,7 @@ const EventDetailPage = () => {
         }
 
         try {
-            const response = await fetch(`${API_BASE_URL}${eventId}`, { headers });
+            const response = await fetch(`${API_GET_EVENT_BY_ID}${eventId}`, { headers });
             if (!response.ok) {
                 const errorData = await response.json().catch(() => ({ message: `HTTP error! status: ${response.status}` }));
                 throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
@@ -62,9 +64,8 @@ const EventDetailPage = () => {
 
             // Initialize selectedOdds from user's existing selections for this event
             if (isAuthenticated) {
-                // Fetch all placed odds for the user
-                const API_GET_PLACED_ODDS_URL = 'https://betwise-sport-betting-app.onrender.com/api/user/all-placed-odds';
-                const placedOddsRes = await fetch(API_GET_PLACED_ODDS_URL, {
+                // Fetch all placed odds for the user 
+                 const placedOddsRes = await fetch(API_GET_PLACED_ODDS_URL, {
                     headers: { 'Authorization': `Bearer ${accessToken}` },
                 });
                 const allPlacedOdds = await placedOddsRes.json();

@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext'; // Import useAuth
 import { useNavigate, Link, useLocation } from 'react-router-dom'; // To redirect after login and for navigation links
 
 // Define API endpoint as a constant
-const API_LOGIN_ENDPOINT = 'https://betwise-sport-betting-app.onrender.com/api/auth/login';
+const API_LOGIN_ENDPOINT = process.env.REACT_APP_API_LOGIN_ENDPOINT;
 
 
 

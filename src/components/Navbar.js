@@ -8,17 +8,17 @@ import {
 } from 'react-icons/fa';
 import './Navbar.css';
 
-// Assuming this API endpoint returns an array of all events
-const API_ALL_EVENTS_URL = 'https://betwise-sport-betting-app.onrender.com/api/user/all-events';
+// API to get selections for an authenticated user's bet slip
+const API_GET_ALL_PLACED_ODDS_URL = process.env.REACT_APP_API_GET_ALL_PLACED_ODDS_URL;
 
 const Navbar = () => {
-  const { isAuthenticated, currentUser, logout } = useAuth();
-  const { slipItems } = useBetSlip();
+  const { isAuthenticated, currentUser, logout, accessToken } = useAuth();
+  const { slipItems: guestSlipItems } = useBetSlip();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Renamed 'click' to 'isMobileMenuOpen' for clarity
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [showUserDropdown, setShowUserDropdown] = useState(false);
-  const [eventCount, setEventCount] = useState(0); // New state for event count
+  const [slipCount, setSlipCount] = useState(0); // State for the number of items in the bet slip
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
@@ -63,31 +63,38 @@ const Navbar = () => {
     };
   }, [showSearchBar, showUserDropdown]);
 
-  // New useEffect to fetch event count
+  // useEffect to determine the bet slip count
   useEffect(() => {
-    const fetchEventCount = async () => {
+    const fetchOnlineSlipCount = async () => {
+      if (!accessToken) {
+        setSlipCount(0);
+        return;
+      }
       try {
-        const response = await fetch(API_ALL_EVENTS_URL);
-        if (!response.ok) {
-          console.error('Failed to fetch event count:', response.statusText);
-          setEventCount(0); // Set to 0 on error
-          return;
-        }
-        const data = await response.json();
-        if (Array.isArray(data)) {
-          setEventCount(data.length);
+        const response = await fetch(API_GET_ALL_PLACED_ODDS_URL, {
+          headers: { 'Authorization': `Bearer ${accessToken}` }
+        });
+        if (response.ok) {
+          const data = await response.json();
+          // The API returns an array of selections, each corresponding to a unique event in the slip
+          setSlipCount(Array.isArray(data) ? data.length : 0);
         } else {
-          console.warn('API for events did not return an array:', data);
-          setEventCount(0); // Set to 0 if data is not an array
+          console.error('Failed to fetch online slip count:', response.statusText);
+          setSlipCount(0);
         }
-      } catch (err) {
-        console.error('Error fetching event count:', err);
-        setEventCount(0); // Set to 0 on fetch error
+      } catch (error) {
+        console.error('Failed to fetch online slip count:', error);
+        setSlipCount(0);
       }
     };
 
-    fetchEventCount();
-  }, []); // Empty dependency array to run once on mount
+    if (isAuthenticated) {
+      fetchOnlineSlipCount();
+    } else {
+      // For guests, the count is the number of events in their local slip
+      setSlipCount(guestSlipItems.length);
+    }
+  }, [isAuthenticated, guestSlipItems, accessToken]); // Dependencies updated
 
   const navLinkClassName = ({ isActive }) =>
     `flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -111,7 +118,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center space-x-4">
           <NavLink to="/" className={navLinkClassName}>Home</NavLink>
           <NavLink to="/event" className={navLinkClassName}>
-            Events {eventCount > 0 && <span className="ml-1 text-xs bg-lime-200 text-lime-700 font-bold px-1.5 py-0.5 rounded-full">{eventCount}</span>}
+            Events
           </NavLink>
           <NavLink to="/live" className={navLinkClassName}>
             <span className="relative flex h-2 w-2 mr-2">
@@ -120,11 +127,11 @@ const Navbar = () => {
             </span>
             Live
           </NavLink>
-          <NavLink to="/sports" className={navLinkClassName}>Sports</NavLink>
+          <NavLink to="/sports" className={navLinkClassName}>Explore</NavLink>
 
           {/* Links available to all users */}
           <NavLink to="/betslip" className={navLinkClassName}>
-            <FaShoppingCart className="mr-1" /> Bet Slip {slipItems.length > 0 && <span className="ml-1 text-xs bg-lime-200 text-lime-700 font-bold px-1.5 py-0.5 rounded-full">{slipItems.length}</span>}
+            <FaShoppingCart className="mr-1" /> Bet Slip {slipCount > 0 && <span className="ml-1 text-xs bg-lime-200 text-lime-700 font-bold px-1.5 py-0.5 rounded-full">{slipCount}</span>}
           </NavLink>
           <NavLink to="/booked-bets" className={navLinkClassName}>Booked Bets</NavLink>
           {/* Links available only to authenticated users */}
@@ -194,7 +201,7 @@ const Navbar = () => {
           </li>
           <li className="nav-item-mobile">
             <NavLink to="/event" className={mobileNavLinkClassName} onClick={closeMobileMenu}>
-              Events {eventCount > 0 && <span className="ml-1 text-xs bg-lime-200 text-lime-700 font-bold px-1.5 py-0.5 rounded-full">{eventCount}</span>}
+              Events
             </NavLink>
           </li>
           <li className="nav-item-mobile">
@@ -209,13 +216,13 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li className="nav-item-mobile">
-            <NavLink to="/sports" className={mobileNavLinkClassName} onClick={closeMobileMenu}>Sports</NavLink>
+            <NavLink to="/sports" className={mobileNavLinkClassName} onClick={closeMobileMenu}>Explore</NavLink>
           </li>
 
           {/* Links available to all users */}
           <li className="nav-item-mobile">
             <NavLink to="/betslip" className={mobileNavLinkClassName} onClick={closeMobileMenu}>
-              <FaShoppingCart className="mr-2" />Bet Slip {slipItems.length > 0 && `(${slipItems.length})`}
+              <FaShoppingCart className="mr-2" />Bet Slip {slipCount > 0 && `(${slipCount})`}
             </NavLink>
           </li>
           <li className="nav-item-mobile">

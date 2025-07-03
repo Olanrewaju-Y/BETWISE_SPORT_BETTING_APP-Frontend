@@ -15,10 +15,10 @@ const ForgotPassword = () => {
     setSuccessMessage('');
 
     // Replace with your actual API endpoint for password reset
-    const API_ENDPOINT = 'https://betwise-sport-betting-app.onrender.com/api/auth/forget-password';
+    const API_FORGET_PASSWORD_ENDPOINT = process.env.REACT_APP_API_FORGET_PASSWORD_ENDPOINT;
 
     try {
-      const response = await fetch(API_ENDPOINT, {
+      const response = await fetch(API_FORGET_PASSWORD_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

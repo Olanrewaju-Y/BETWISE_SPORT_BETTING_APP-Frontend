@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import { FaSpinner, FaExclamationTriangle, FaGlobe, FaFacebook, FaTwitter, FaInstagram, FaFutbol } from 'react-icons/fa';
 import './SportsPage.css';
 
-const API_SPORTS_ENDPOINT = 'https://betwise-sport-betting-app.onrender.com/api/live-events/sports-db-events';
+const API_SPORTS_ENDPOINT = process.env.REACT_APP_API_SPORTS_ENDPOINT;
 
 const TeamCard = ({ team }) => {
     // A helper to create social links
@@ -110,7 +110,7 @@ const SportsPage = () => {
                 <div className="max-w-7xl mx-auto">
                     <header className="text-center mb-10">
                         <h1 className="text-4xl font-bold text-lime-400">Explore Sports Teams</h1>
-                        <p className="text-lg text-gray-300 mt-2">Discover details about your favorite teams from TheSportsDB.</p>
+                        <p className="text-lg text-gray-300 mt-2">Discover details about your favorite Teams.</p>
                     </header>
 
                     <main>

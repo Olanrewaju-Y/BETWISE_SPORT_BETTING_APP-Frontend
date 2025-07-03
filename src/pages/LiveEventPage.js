@@ -18,8 +18,7 @@ const LiveEventPage = () => {
 
     try {
       const response = await fetch('https://betwise-sport-betting-app.onrender.com/api/live-events/rapid-api-events');
-      // const response = await fetch('https://v3.football.api-sports.io/fixtures/events?fixture=215662');
-
+      
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ message: `HTTP error! status: ${response.status}` }));
         throw new Error(errorData.message || `HTTP error! status: ${response.status}`);

@@ -5,13 +5,12 @@ import { useBetSlip } from '../context/BetSlipContext';
 import { useAuth } from '../context/AuthContext';
 import { FaTrash, FaShoppingCart, FaSpinner, FaCheckCircle, FaExclamationTriangle, FaTimesCircle, FaListAlt } from 'react-icons/fa'; // Added FaListAlt
 
-const API_CREATE_BET_SLIP_URL = 'https://betwise-sport-betting-app.onrender.com/api/user/create-bet-slip';
-const API_GET_PLACED_ODDS_URL = 'https://betwise-sport-betting-app.onrender.com/api/user/all-placed-odds';
-const API_DELETE_ALL_PLACED_ODDS_URL = 'https://betwise-sport-betting-app.onrender.com/api/user/delete-all-placed-odds';
-const API_DELETE_ONE_PLACED_ODD_URL = 'https://betwise-sport-betting-app.onrender.com/api/user/delete-one-placed-odd';
-const API_GET_USER_BET_SLIPS_URL = 'https://betwise-sport-betting-app.onrender.com/api/user/user-bet-slips';
-const LOCAL_BOOKED_BETS_KEY = 'betWiseOfflineBookedBets'; // New key for offline bets
-const API_PLACE_ODD_URL = 'https://betwise-sport-betting-app.onrender.com/api/user/place-odd/';
+const API_CREATE_BET_SLIP_URL = process.env.REACT_APP_API_CREATE_BET_SLIP_URL;
+const API_GET_ALL_PLACED_ODDS_URL = process.env.REACT_APP_API_GET_ALL_PLACED_ODDS_URL;
+const API_DELETE_ALL_PLACED_ODDS_URL = process.env.REACT_APP_API_DELETE_ALL_PLACED_ODDS_URL;
+const API_DELETE_ONE_PLACED_ODD_URL = process.env.REACT_APP_API_DELETE_ONE_PLACED_ODD_URL;
+const API_GET_USER_BET_SLIPS_URL = process.env.REACT_APP_API_GET_USER_BET_SLIPS_URL;
+const LOCAL_BOOKED_BETS_KEY = process.env.REACT_APP_LOCAL_BOOKED_BETS_KEY; 
 
 
 const BetSlipPage = () => {
@@ -171,7 +170,7 @@ const BetSlipPage = () => {
         setLoadingOnlineSlip(true);
         setOnlineSlipError('');
         try {
-            const res = await fetch(API_GET_PLACED_ODDS_URL, {
+            const res = await fetch(API_GET_ALL_PLACED_ODDS_URL, {
                 headers: { 'Authorization': `Bearer ${accessToken}` },
             });
             const data = await res.json();

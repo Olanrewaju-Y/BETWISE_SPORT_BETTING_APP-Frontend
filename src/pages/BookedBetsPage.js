@@ -4,8 +4,8 @@ import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar'; // Import Navbar
 import { FaSpinner, FaExclamationTriangle, FaListAlt } from 'react-icons/fa';
 
-const API_GET_USER_BET_SLIPS_URL = 'https://betwise-sport-betting-app.onrender.com/api/user/user-bet-slips';
-const LOCAL_BOOKED_BETS_KEY = 'betWiseOfflineBookedBets'; // Key for offline bets
+const API_GET_USER_BET_SLIPS_URL = process.env.REACT_APP_API_GET_USER_BET_SLIPS_URL;
+const LOCAL_BOOKED_BETS_KEY = process.env.REACT_APP_LOCAL_BOOKED_BETS_KEY; // Key for offline bets
 
 const BookedBetsPage = () => {
     const { isAuthenticated, accessToken, isLoadingAuth } = useAuth();

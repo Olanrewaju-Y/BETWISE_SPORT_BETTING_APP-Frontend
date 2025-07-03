@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'; // Import Link for navigation
 import Footer from '../components/Footer';
 
 // API Endpoint
-const API_EVENT_ENDPOINT = 'https://betwise-sport-betting-app.onrender.com/api/user/all-events';
+const API_GET_ALL_EVENTS = process.env.REACT_APP_API_GET_ALL_EVENTS;
 
 // Helper function to format date strings
 const formatDate = (dateString) => {
@@ -92,7 +92,7 @@ const Events = () => {
     setLoading(true);
       setError(null); // Clear previous errors
       try {
-        const response = await fetch(API_EVENT_ENDPOINT);
+        const response = await fetch(API_GET_ALL_EVENTS);
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({ message: `HTTP error! status: ${response.status}` }));
           throw new Error(errorData.message || `HTTP error! status: ${response.status}`);

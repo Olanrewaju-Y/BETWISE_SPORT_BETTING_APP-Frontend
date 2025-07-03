@@ -51,7 +51,7 @@ const Register = () => {
         setLoading(true);
 
         // Replace with your actual registration API endpoint
-        const API_ENDPOINT = 'https://betwise-sport-betting-app.onrender.com/api/auth/signup';
+        const API_ENDPOINT = process.env.REACT_APP_API_SIGNUP_ENDPOINT;
 
         try {
             // Prepare data for the API, matching the provided JSON structure

@@ -6,7 +6,8 @@ import { FaFutbol, FaExclamationTriangle } from 'react-icons/fa';
 import MatchCard from '../components/MatchCard'; // Import MatchCard
 import './Home.css'; // Optional: Create a Home.css for specific styles
 
-const API_EVENT_ENDPOINT = 'https://betwise-sport-betting-app.onrender.com/api/user/all-events';
+const API_GET_ALL_EVENTS = process.env.REACT_APP_API_GET_ALL_EVENTS; // Ensure this is set correctly
+
 // Helper function to format date and time concisely
 const formatConciseDateTime = (dateStr, timeStr) => {
   if (!dateStr) return timeStr || 'N/A';
@@ -75,7 +76,7 @@ const Home = () => {
   const fetchEvents = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch(API_EVENT_ENDPOINT);
+      const response = await fetch(API_GET_ALL_EVENTS);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
