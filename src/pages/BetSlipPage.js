@@ -14,7 +14,6 @@ const LOCAL_BOOKED_BETS_KEY = process.env.REACT_APP_LOCAL_BOOKED_BETS_KEY;
 
 
 const BetSlipPage = () => {
-     // Rename guest context items for clarity
     const { slipItems: guestSlipItems, removeFromSlip: removeFromGuestSlip, clearSlip: clearGuestSlip, setSlipItems } = useBetSlip();
     const { isAuthenticated, accessToken, currentUser, refreshUser, isLoadingAuth } = useAuth();
     const navigate = useNavigate(); // Initialize navigate
