@@ -1,7 +1,6 @@
 /* About.js */
 import React from 'react';
 import Navbar from '../components/Navbar'; // Import Navbar
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa'; // Import social media icons
 
 import Footer from '../components/Footer'; // Import Footer
 

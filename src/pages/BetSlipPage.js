@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'; // Added useL
 import Navbar from '../components/Navbar'; // Ensure Navbar is imported
 import { useBetSlip } from '../context/BetSlipContext';
 import { useAuth } from '../context/AuthContext';
-import { FaTrash, FaShoppingCart, FaSpinner, FaCheckCircle, FaExclamationTriangle, FaTimesCircle, FaListAlt } from 'react-icons/fa'; // Added FaListAlt
+import { FaTrash, FaShoppingCart, FaSpinner, FaCheckCircle, FaExclamationTriangle, FaTimesCircle } from 'react-icons/fa'; // Added FaListAlt
 
 const API_CREATE_BET_SLIP_URL = process.env.REACT_APP_API_CREATE_BET_SLIP_URL;
 const API_GET_ALL_PLACED_ODDS_URL = process.env.REACT_APP_API_GET_ALL_PLACED_ODDS_URL;
@@ -14,11 +14,10 @@ const LOCAL_BOOKED_BETS_KEY = process.env.REACT_APP_LOCAL_BOOKED_BETS_KEY;
 
 
 const BetSlipPage = () => {
-    const { slipItems: guestSlipItems, removeFromSlip: removeFromGuestSlip, clearSlip: clearGuestSlip, setSlipItems } = useBetSlip();
+    const { slipItems: guestSlipItems, removeFromSlip: removeFromGuestSlip, clearSlip: clearGuestSlip } = useBetSlip();
     const { isAuthenticated, accessToken, currentUser, refreshUser, isLoadingAuth } = useAuth();
     const navigate = useNavigate(); // Initialize navigate
-    const location = useLocation(); // For redirecting back after login
-
+  
     const [stake, setStake] = useState('');
     const [isPlacingBet, setIsPlacingBet] = useState(false);
     const [betMessage, setBetMessage] = useState({ type: '', text: '' });
@@ -259,17 +258,17 @@ const BetSlipPage = () => {
         return names[category]?.[oddKey] || oddKey.replace(/_/g, ' ').toUpperCase();
     };
 
-  const extractOddDetails = (selectedOdd) => {
-        if (!selectedOdd || typeof selectedOdd !== 'object') return { market: 'N/A', oddName: 'N/A', oddValue: 'N/A' };
-        const marketKey = Object.keys(selectedOdd).find(k => k !== '_id');
-        if (!marketKey) return { market: 'N/A', oddName: 'N/A', oddValue: 'N/A' };
+//   const extractOddDetails = (selectedOdd) => {
+//         if (!selectedOdd || typeof selectedOdd !== 'object') return { market: 'N/A', oddName: 'N/A', oddValue: 'N/A' };
+//         const marketKey = Object.keys(selectedOdd).find(k => k !== '_id');
+//         if (!marketKey) return { market: 'N/A', oddName: 'N/A', oddValue: 'N/A' };
         
-        const oddObject = selectedOdd[marketKey];
-        if (typeof oddObject !== 'object') return { market: marketKey, oddName: 'N/A', oddValue: 'N/A' };
-        const oddKey = Object.keys(oddObject)[0];
-        if (!oddKey) return { market: marketKey, oddName: 'N/A', oddValue: 'N/A' };
-        return { market: marketKey, oddName: getOddDisplayName(marketKey, oddKey), oddValue: oddObject[oddKey] };
-    };
+//         const oddObject = selectedOdd[marketKey];
+//         if (typeof oddObject !== 'object') return { market: marketKey, oddName: 'N/A', oddValue: 'N/A' };
+//         const oddKey = Object.keys(oddObject)[0];
+//         if (!oddKey) return { market: marketKey, oddName: 'N/A', oddValue: 'N/A' };
+//         return { market: marketKey, oddName: getOddDisplayName(marketKey, oddKey), oddValue: oddObject[oddKey] };
+//     };
 
     const handlePlaceBet = async () => {
         // Clear stake and reset potential winnings if slip is empty (edge case, button should be disabled)
